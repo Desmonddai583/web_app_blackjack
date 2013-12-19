@@ -6,7 +6,7 @@ require 'rubygems'
 require 'sinatra'
 require 'pry'
 
-enable :sessions
+use Rack::Session::Pool, :expire_after => 60 * 60 * 24
 
 helpers do
   def check_minimum_bet(minimum)
@@ -73,6 +73,7 @@ post '/init' do
   unless check_player_name(params[:player_name]) then halt erb :init end
   unless check_player_chips(params[:player_chip]) then halt erb :init end
   @bj = BlackJack.new(params[:player_name], params[:player_chip].to_i, params[:deck_num].to_i, params[:min_bet].to_i)
+  binding.pry
   session[:bj] = @bj
   redirect '/bet'
 end
