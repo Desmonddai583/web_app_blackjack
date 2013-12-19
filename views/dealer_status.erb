@@ -22,10 +22,11 @@
 </div>
 
 <% unless session[:stay] %>
-<form action="/game/dealer/hit" method='post'>
+<form id='dealer_hit' action="/game/dealer/hit" method='post'>
   <input type="submit" class="btn btn-success" value="Hit" />
 </form>
-<% end %>
+<% else %>
 <form action="/game/dealer/stay" method='post'>
   <input type="submit" class="btn btn-warning" value="Stay" />
 </form>
+<% end %>

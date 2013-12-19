@@ -6,6 +6,7 @@ require 'rubygems'
 require 'sinatra'
 require 'pry'
 
+#set :sessions, true
 use Rack::Session::Pool, :expire_after => 60 * 60 * 24
 
 helpers do
@@ -73,7 +74,6 @@ post '/init' do
   unless check_player_name(params[:player_name]) then halt erb :init end
   unless check_player_chips(params[:player_chip]) then halt erb :init end
   @bj = BlackJack.new(params[:player_name], params[:player_chip].to_i, params[:deck_num].to_i, params[:min_bet].to_i)
-  binding.pry
   session[:bj] = @bj
   redirect '/bet'
 end
@@ -122,7 +122,7 @@ post '/game/player/hit' do
   if session[:bj].player.is_busted?
     session[:result_info] = session[:bj].player.lose?('busted')
   end
-  erb :game
+  erb :game, layout: false
 end
 
 post '/game/player/stay' do
@@ -136,7 +136,7 @@ get '/game/dealer' do
   if session[:bj].dealer.points.sort.last >= 17
     session[:stay] = true
   end
-  erb :game
+  erb :game, layout: false
 end
 
 post '/game/dealer/hit' do
@@ -150,7 +150,7 @@ post '/game/dealer/hit' do
       session[:stay] = true
     end
   end
-  erb :game
+  erb :game, layout: false
 end
 
 post '/game/dealer/stay' do
