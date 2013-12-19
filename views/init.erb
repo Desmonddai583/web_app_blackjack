@@ -1,0 +1,41 @@
+<% if session[:bj]%>
+<div class="alert alert-error clearfix">
+  <p>You've already in game.</p>
+  <a href="/resume" class="btn btn-info span1">Resume</a>
+</div>
+<% end %>
+<% if session[:info]%>
+<div class="alert alert-error clearfix">
+  <%= session[:info]%>
+  <% delete session[:info] %>
+</div>
+<% end %>
+
+<h3>Welcome to BlackJack Game!</h3>
+<h3>Config and initialize the game:</h3>
+<form method="post" action="init">
+
+  <h4>How many decks play in game:</h4>
+  <select name='deck_num' >
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+  </select>
+
+  <h4>What is the minimum bet in game:</h4>
+  <div class="input-prepend input-append">
+  <input class="span2" placeholder="Not less than 10..." type="text" name="min_bet">
+  </div>
+
+  <h4>Please input your name:</h4>
+  <input class="span2" type="text" name="player_name">
+
+  <h4>Please input your chips:</h4>
+  <input class="span2" type="text" name="player_chip">
+  <br>
+
+  <button type="submit" class="btn btn-primary">Save</button>
+</form>

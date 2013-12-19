@@ -1,0 +1,31 @@
+
+
+<div class="container-fluid">
+<div class="row-fluid">
+  <div class="span3">
+    <% if session[:bj].player.is_complete%>
+      <%= erb :result%>
+    <% elsif session[:turn] == 'player' %>
+      <%= erb :player_status%>
+    <% else %>
+      <%= erb :dealer_status%>
+    <% end %>
+  </div>
+
+  <div class="span9">
+  <% unless session[:result_info].empty?%>
+  <div class='alert alert-success'><%= session[:result_info]%></div>
+  <% end %>
+  <div class="well">
+  <h4>Dealer's cards</h4>
+  <%= session[:bj].dealer.show_cards%>
+  </div>
+  <div class="well">
+  <h4><%= session[:bj].player.name%> cards</h4>
+  <%= session[:bj].player.show_cards%>
+  </div>
+  </div>
+</div>
+</div>
+
+

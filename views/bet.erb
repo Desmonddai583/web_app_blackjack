@@ -1,0 +1,9 @@
+<h3>Hi <%= session[:bj].player.name%>!</h3>
+<h3>You got <%= session[:bj].player.chips %> chips</h3>
+<form method="post" action="bet">
+<h4>How many chips you want to bet:</h4>
+<div class="input-prepend input-append">
+<input class="span3" placeholder="Not less than <%= "#{session[:bj].minimum_bet}"%>..." type="text" name="bet_chips">
+</div>
+<button type="submit" class="btn btn-primary">Bet</button>
+</form>

@@ -1,0 +1,31 @@
+<div class="alert alert-info">
+  <ul>
+<li><%= session[:bj].dealer.name%>'s action</li>
+<li><%= session[:bj].dealer.name%>'s current point couble be</li>
+<li><%= session[:bj].dealer.points%></li>
+</ul>
+</div>
+
+<div class="alert alert-info">
+  <ul>
+<li><%= session[:bj].player.name%> stays at</li>
+<li><%= session[:bj].dealer.points.sort.last%></li>
+</ul>
+</div>
+
+<div class="alert alert-info">
+  <ul>
+<li><%= session[:bj].player.name%>'s status</li>
+<li>Current bet: <%= session[:bj].player.bet_chips%></li>
+<li>Chips remaining: <%= session[:bj].player.chips%></li>
+</ul>
+</div>
+
+<% unless session[:stay] %>
+<form action="/game/dealer/hit" method='post'>
+  <input type="submit" class="btn btn-success" value="Hit" />
+</form>
+<% end %>
+<form action="/game/dealer/stay" method='post'>
+  <input type="submit" class="btn btn-warning" value="Stay" />
+</form>

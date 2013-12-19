@@ -1,0 +1,22 @@
+<div class="alert alert-info">
+  <ul>
+<li><%= session[:bj].player.name%>'s action</li>
+<li><%= session[:bj].player.name%>'s current point couble be</li>
+<li><%= session[:bj].player.points%></li>
+</ul>
+</div>
+
+<div class="alert alert-info">
+  <ul>
+<li><%= session[:bj].player.name%>'s status</li>
+<li>Current bet: <%= session[:bj].player.bet_chips%></li>
+<li>Chips remaining: <%= session[:bj].player.chips%></li>
+</ul>
+</div>
+
+<form action="/game/player/hit" method='post'>
+  <input type="submit" class="btn btn-success" value="Hit" />
+</form>
+<form action="/game/player/stay" method='post'>
+  <input type="submit" class="btn btn-warning" value="Stay" />
+</form>

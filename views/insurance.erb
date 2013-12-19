@@ -1,0 +1,30 @@
+<div class="container-fluid">
+<div class="row-fluid">
+  <div class="span3">
+    <strong>User's turn:<strong>
+    <div class="alert">
+    Dealer got a <%= session[:bj].dealer.cards[0].card_info%>!
+    Would you like to buy an insurance?
+    </div>
+    <form method="post" action="/game">
+       <input type="hidden" name="insurance" value="yes">
+      <input type="button" value="Yes" class="btn btn-primary" onClick="submit()">
+    </form>
+    <form method="post" action="/game">
+       <input type="hidden" name="insurance" value="no">
+    <input type="button" value="No" class="btn btn-primary" onClick="submit()">
+    </form>
+  </div>
+
+  <div class="span9">
+  <div class="well">
+  <h4>Dealer's cards</h4>
+  <%= session[:bj].dealer.show_cards%>
+  </div>
+  <div class="well">
+  <h4><%= session[:bj].player.name%> cards</h4>
+  <%= session[:bj].player.show_cards%>
+  </div>
+  </div>
+</div>
+</div>
